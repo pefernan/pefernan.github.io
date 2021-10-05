@@ -13,6 +13,7 @@ function validateSalary() {
         salaryInput.classList.add('is-invalid');
         salaryInputHelper.classList.add('invalid-feedback');
         salaryInputHelper.textContent = 'The salary is too high, employees cannot earn more than a 10000000$';
+        return false;
     }
-
+    return true;
 }
