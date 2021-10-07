@@ -77,7 +77,7 @@ function fetchCountryStates() {
     }
 }
 
-function fetCities() {
+function fetchStateCities() {
     const country = document.getElementById('candidate.address.country').value;
     const state = document.getElementById('candidate.address.state').value;
 
