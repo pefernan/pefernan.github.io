@@ -17,3 +17,20 @@ function validateSalary() {
     }
     return true;
 }
+
+
+function fetchCountries() {
+    const countrySelect = document.getElementById('candidate.address.country');
+    countrySelect.empty();
+
+    fetch("https://countriesnow.space/api/v0.1/countries/flag/unicode")
+    .then(response => response.json())
+    .then(response => {
+        response.data.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.name;
+            option.textContent = country.name;
+            countrySelect.appendChild(option);
+        });
+    });
+}
