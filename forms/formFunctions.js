@@ -21,7 +21,7 @@ function validateSalary() {
 
 function fetchCountries() {
     const countrySelect = document.getElementById('candidate.address.country');
-    countrySelect.empty();
+    countrySelect.length = 0;
 
     fetch("https://countriesnow.space/api/v0.1/countries/flag/unicode")
     .then(response => response.json())
