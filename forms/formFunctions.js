@@ -18,6 +18,44 @@ function validateSalary() {
     return true;
 }
 
+function validateSkills() {
+    const skillsInput = document.getElementById('candidate.skills');
+    const skillsInputHelper = document.getElementById('candidate.skills_helper');
+
+    skillsInput.classList.remove('is-invalid');
+    skillsInput.classList.remove('is-valid');
+    skillsInputHelper.classList.remove('invalid-feedback');
+    skillsInputHelper.classList.remove('valid-feedback');
+    skillsInputHelper.textContent = '';
+
+
+    const skills = skillsInput.value;
+
+    if(!skills) {
+        skillsInput.classList.add('is-invalid');
+        skillsInputHelper.classList.add('invalid-feedback');
+        skillsInputHelper.textContent = "Please fill the candidate skills!";
+        return false;
+    }
+
+    const skillsArray = skills.split(",");
+
+    if(skillsArray.length <5) {
+        skillsInput.classList.add('is-invalid');
+        skillsInputHelper.classList.add('invalid-feedback');
+        skillsInputHelper.textContent = "The candidate must have at least 5 valid skills!";
+        return false;
+    }
+
+    if(skillsArray.includes("Kogito")) {
+        skillsInput.classList.add('is-valid');
+        skillsInputHelper.classList.add('valid-feedback');
+        skillsInputHelper.textContent = "This guy is a Rockstar!";
+    }
+
+    return true;
+}
+
 function initSelect(select, label) {
     select.length = 0;
     select.value = "";
@@ -31,6 +69,12 @@ function initSelect(select, label) {
 function fetchCountries() {
     const countrySelect = document.getElementById('candidate.address.country');
     initSelect(countrySelect, "-- Select the Country --")
+
+    const stateSelect = document.getElementById('candidate.address.state');
+    initSelect(stateSelect, "-- Select the State --");
+
+    const citySelect = document.getElementById('candidate.address.city');
+    initSelect(citySelect, "-- Select the City --");
 
     fetch("https://countriesnow.space/api/v0.1/countries/flag/unicode")
         .then(response => response.json())
